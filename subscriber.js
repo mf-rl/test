@@ -2,14 +2,17 @@ const { PubSub } = require('@google-cloud/pubsub');
 const fs = require('fs');
 const path = require('path');
 
-// Cargar configuración
+// Load configuration
 const configPath = path.join(__dirname, 'subscriptions.json');
 const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
 
-const { projectId, subscriptions } = config;
+const { projectId, credentialsFile, subscriptions } = config;
 
-// Cliente Pub/Sub (usa GOOGLE_APPLICATION_CREDENTIALS)
-const pubSubClient = new PubSub({ projectId });
+// Create Pub/Sub client using explicit credentials
+const pubSubClient = new PubSub({
+  projectId,
+  keyFilename: path.join(__dirname, credentialsFile)
+});
 
 console.log('Iniciando listeners Pub/Sub QA...\n');
 
@@ -28,7 +31,6 @@ subscriptions.forEach(sub => {
     console.log(`Data: ${message.data.toString()}`);
     console.log('Attributes:', message.attributes);
 
-    // Confirmar procesamiento
     message.ack();
   });
 

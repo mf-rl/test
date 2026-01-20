@@ -1,17 +1,10 @@
 {
-  "projectId": "qa-finm-acgl-apisap",
+  "projectId": "<GCP_PROJECT_ID>",
+  "credentialsFile": "credentials.json",
   "subscriptions": [
     {
-      "code": "OTC-M-358",
-      "name": "corp.ftc.finm.blln.SRG358"
-    },
-    {
-      "code": "PTP-N-556",
-      "name": "corp.ftc.finm.apyb.SGR556"
-    },
-    {
-      "code": "RTR-N-502",
-      "name": "corp.ftc.finm.acgl.SGR502"
+      "code": "<INTEGRATION_CODE>",
+      "name": "<SUBSCRIPTION_NAME>"
     }
   ]
 }
